@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../.."
+		},
+		{
+			"path": "../../../../FALL24_BL5/PE_Fall2024_B5"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "ebay"
+	}
+}
