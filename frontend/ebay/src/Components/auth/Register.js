@@ -17,16 +17,16 @@ const Register = () => {
     setErrorMsg('');
     setSuccessMsg('');
 
+    const username = `${firstName.trim()} ${lastName.trim()}`;
+
     try {
       const res = await axios.post('http://localhost:9999/auth/register', {
-        firstName,
-        lastName,
+        username,
         email,
         password,
       });
 
-      setSuccessMsg('Đăng ký thành công. Vui lòng kiểm tra email để xác minh tài khoản.');
-
+      setSuccessMsg('✅ Đăng ký thành công. Chuyển hướng đến trang đăng nhập...');
       setFirstName('');
       setLastName('');
       setEmail('');
@@ -36,35 +36,30 @@ const Register = () => {
         navigate('/login');
       }, 3000);
     } catch (err) {
-      setErrorMsg(err.response?.data?.msg || 'Đã xảy ra lỗi khi đăng ký');
+      setErrorMsg(err.response?.data?.message || '❌ Đã xảy ra lỗi khi đăng ký');
     }
   };
 
   return (
     <div className="register-container">
       <div className="register-box">
-        {/* Logo */}
         <div className="logo-container">
           <img src="/logo_ebay.png" alt="eBay Logo" className="logo" />
         </div>
 
-        {/* Heading */}
         <h2>Create an account</h2>
         <p className="login-link-top">
           Already have an account? <Link to="/login">Sign in</Link>
         </p>
 
-        {/* Tabs */}
         <div className="tab-selector">
           <button className="tab active">Personal</button>
           <button className="tab">Business</button>
         </div>
 
-        {/* Alerts */}
         {errorMsg && <div className="error-msg">{errorMsg}</div>}
         {successMsg && <div className="success-msg">{successMsg}</div>}
 
-        {/* Form */}
         <form onSubmit={handleRegister}>
           <div className="name-fields">
             <input
@@ -108,7 +103,6 @@ const Register = () => {
           <button type="submit" className="submit-btn">Create personal account</button>
         </form>
 
-        {/* Social login */}
         <div className="divider"><span>or continue with</span></div>
         <div className="social-buttons">
           <button className="google-btn">🔍 Google</button>
@@ -117,7 +111,6 @@ const Register = () => {
         </div>
       </div>
 
-      {/* Footer */}
       <div className="footer">
         <p>
           Copyright © 1995-2025 eBay Inc. All Rights Reserved.{' '}
